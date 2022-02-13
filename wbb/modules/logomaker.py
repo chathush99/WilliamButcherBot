@@ -1,6 +1,6 @@
-from innexiaBot.events import register
-from innexiaBot import OWNER_ID
-from innexiaBot import telethn as tbot
+from wbb.events import register
+from wbb import OWNER_ID
+from wbb import telethn as tbot
 import os 
 from PIL import Image, ImageDraw, ImageFont
 import shutil 
@@ -8,6 +8,22 @@ import random, re
 import glob
 import time
 from telethon.tl.types import InputMessagesFilterPhotos
+from wbb import app 
+from wbb import app2 
+from pyrogram import filters 
+...
+
+
+# For /help menu
+__MODULE__ = "Logo Maker"
+__HELP__ = "Not Support Menu"
+
+
+@app.on_message(filters.command("start"))
+async def some_function(_, message):
+    await message.reply_text("I'm already up!!")
+
+# Many useful functions are in, wbb/utils/, wbb, and wbb/core/
 
 
 FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
@@ -84,13 +100,13 @@ async def lego(event):
  await event.reply('Creating your logo...wait!')
  try:
     text = event.pattern_match.group(1)
-    img = Image.open('./innexiaBot/resources/blackbg.jpg')
+    img = Image.open('./wbb/resources/blackbg.jpg')
     draw = ImageDraw.Draw(img)
     image_widthz, image_heightz = img.size
     pointsize = 500
     fillcolor = "gold"
     shadowcolor = "blue"
-    font = ImageFont.truetype("./innexiaBot/resources/Chopsic.otf", 330)
+    font = ImageFont.truetype("./wbb/resources/Chopsic.otf", 330)
     w, h = draw.textsize(text, font=font)
     h += int(h*0.21)
     image_width, image_height = img.size
@@ -104,7 +120,7 @@ async def lego(event):
     if os.path.exists(fname2):
             os.remove(fname2)
  except Exception as e:
-   await event.reply(f'Error Report @SiderzChat, {e}')
+   await event.reply(f'Error Report @Sakuzunosupportgruop, {e}')
 
 
 
@@ -124,13 +140,13 @@ async def lego(event):
  await event.reply('Creating your logo...wait!')
  try:
     text = event.pattern_match.group(1)
-    img = Image.open('./innexiaBot/resources/blackbg.jpg')
+    img = Image.open('./wbb/resources/blackbg.jpg')
     draw = ImageDraw.Draw(img)
     image_widthz, image_heightz = img.size
     pointsize = 500
     fillcolor = "white"
     shadowcolor = "blue"
-    font = ImageFont.truetype("./innexiaBot/resources/Maghrib.ttf", 1000)
+    font = ImageFont.truetype("./wbb/resources/Maghrib.ttf", 1000)
     w, h = draw.textsize(text, font=font)
     h += int(h*0.21)
     image_width, image_height = img.size
@@ -138,21 +154,16 @@ async def lego(event):
     x = (image_widthz-w)/2
     y= ((image_heightz-h)/2+6)
     draw.text((x, y), text, font=font, fill="white", stroke_width=0, stroke_fill="white")
-    fname2 = "LogoByInnexia.png"
+    fname2 = "LogoByNipun.png"
     img.save(fname2, "png")
-    await tbot.send_file(event.chat_id, fname2, caption="Made by Cobra Robot😈")
+    await tbot.send_file(event.chat_id, fname2, caption="Made by Sakuzuno")
     if os.path.exists(fname2):
             os.remove(fname2)
  except Exception as e:
-   await event.reply(f'Error Report @SiderzChat, {e}')
+   await event.reply(f'Error Report @Sakuzunosupportgruop, {e}')
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
 
 
-__help__ = """
- ❍ /logo text :  Create your logo with your name
- ❍ /wlogo text :  Create your logo with your name
- """
-__mod_name__ = "Logo"
